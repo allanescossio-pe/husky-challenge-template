@@ -55,5 +55,3 @@ bin/dev
 ```sh
 bin/rails spec
 ```
-
-
