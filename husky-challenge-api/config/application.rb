@@ -18,6 +18,7 @@ module HuskyChallengeApi
   class Application < Rails::Application
     config.load_defaults 7.0
     config.time_zone = "Brasilia"
+    I18n.enforce_available_locales = false
     I18n.default_locale = :"pt-BR"
     config.api_only = true
     config.active_record.schema_format = :sql
