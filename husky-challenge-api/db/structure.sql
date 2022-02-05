@@ -106,6 +106,13 @@ CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
 
 
 --
+-- Name: index_users_on_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_token ON public.users USING btree (token);
+
+
+--
 -- PostgreSQL database dump complete
 --
 

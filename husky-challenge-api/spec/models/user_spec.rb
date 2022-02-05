@@ -10,5 +10,9 @@ RSpec.describe User, type: :model do
       subject { create(:user) }
       expect validate_uniqueness_of(:email).ignoring_case_sensitivity
     end
+    specify do
+      subject { create(:user, :with_token) }
+      expect validate_uniqueness_of(:token)
+    end
   end
 end
