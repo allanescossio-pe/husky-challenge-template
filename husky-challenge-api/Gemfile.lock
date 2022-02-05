@@ -1,3 +1,9 @@
+PATH
+  remote: ../engines/application-base
+  specs:
+    application-base (0.1.0)
+      rails (= 7.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -222,6 +228,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  application-base!
   bootsnap
   factory_bot_rails
   ffaker
