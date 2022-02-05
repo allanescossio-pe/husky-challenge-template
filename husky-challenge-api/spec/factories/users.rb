@@ -4,7 +4,7 @@ FactoryBot.define do
     email { FFaker::Internet.unique.email }
 
     trait :with_token do
-      token { FFaker::Lorem.unique.characters(characters_count = 50) }
+      auth_token { FFaker::Lorem.unique.characters(characters_count = 24) }
     end
   end
 end

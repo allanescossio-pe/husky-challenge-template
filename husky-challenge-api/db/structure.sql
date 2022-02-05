@@ -42,7 +42,7 @@ CREATE TABLE public.users (
     id bigint NOT NULL,
     name character varying NOT NULL,
     email character varying(100) NOT NULL,
-    token character varying(50),
+    auth_token character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
@@ -99,17 +99,17 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: index_users_on_auth_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_auth_token ON public.users USING btree (auth_token);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
-
-
---
--- Name: index_users_on_token; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_users_on_token ON public.users USING btree (token);
 
 
 --
