@@ -17,6 +17,8 @@ Bundler.require(*Rails.groups)
 module HuskyChallengeApi
   class Application < Rails::Application
     config.load_defaults 7.0
+    config.time_zone = "Brasilia"
+    I18n.default_locale = :"pt-BR"
     config.api_only = true
     config.active_record.schema_format = :sql
     config.generators do |g|
