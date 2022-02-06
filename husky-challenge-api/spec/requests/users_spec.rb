@@ -1,11 +1,9 @@
-RSpec.describe "/users", type: :request do
+RSpec.describe "Users", type: :request do
   let(:valid_attributes) { build(:user).attributes }
 
   let(:invalid_attributes) { build(:user, name: nil).attributes }
 
-  let(:valid_headers) {
-    {}
-  }
+  let(:valid_headers) { {} }
 
   describe "GET /show" do
     it "renders a successful response" do
