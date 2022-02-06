@@ -8,7 +8,9 @@ RSpec.describe "UserAuthToken::Renew", type: :request do
     context "with valid user" do
       before { allow(UserAuthToken::Renew).to receive(:call).with(user).and_return(success_result) }
 
-      it "renews token" do
+      it "renews token", :aggregate_failures do
+        expect(UserAuthToken::Renew).to receive(:call).with(user)
+
         patch valid_url
 
         expect(response).to have_http_status(:ok)
