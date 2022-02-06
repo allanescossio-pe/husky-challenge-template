@@ -12,6 +12,12 @@ RSpec.describe CreateUser do
     context "when the params are valid" do
       include_examples "success should be true"
 
+      it "returns new user" do
+        create_user = call
+
+        expect(create_user.result.class).to eq(User)
+      end
+
       it "sends mail" do
         expect(UserAuthToken::SendMail).to receive(:call).with(an_instance_of(User))
         call

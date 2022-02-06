@@ -10,8 +10,9 @@ class CreateUser < ApplicationService
       return error_result(user.errors) unless user.save
 
       UserAuthToken::SendMail.call(user)
+
+      success_result(user)
     end
-    success_result
   end
 
   private
