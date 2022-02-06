@@ -26,3 +26,5 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
   config.active_record.verbose_query_logs = true
 end
+
+Rails.application.routes.default_url_options[:host] = "localhost:3000"
