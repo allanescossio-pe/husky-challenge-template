@@ -23,13 +23,6 @@ RSpec.describe UserAuthToken::Renew do
       end
     end
 
-    context "when the user is invalid" do
-      let(:user) { nil }
-
-      include_examples "success should be false"
-      include_examples "return error message with text", "Usuário inválido"
-    end
-
     context "when there are errors" do
       before { allow(UserAuthToken::SendMail).to receive(:call).with(user).and_raise(StandardError) }
 
