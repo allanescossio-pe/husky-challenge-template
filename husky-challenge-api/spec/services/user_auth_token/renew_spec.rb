@@ -1,4 +1,4 @@
-RSpec.describe UserToken::Renew do
+RSpec.describe UserAuthToken::Renew do
   describe "#call" do
     subject(:call) { described_class.call(user) }
 

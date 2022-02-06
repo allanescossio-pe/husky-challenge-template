@@ -1,4 +1,4 @@
-module UserToken
+module UserAuthToken
   class Renew < ApplicationService
     def initialize(user)
       @user = user
