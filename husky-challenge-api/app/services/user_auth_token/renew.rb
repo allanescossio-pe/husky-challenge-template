@@ -9,6 +9,8 @@ module UserAuthToken
 
       User.transaction do
         user.regenerate_auth_token
+        user.update!(auth_token_has_been_validated: false)
+
         UserAuthToken::SendMail.call(user)
       end
       success_result

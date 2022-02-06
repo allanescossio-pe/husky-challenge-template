@@ -2,7 +2,7 @@ RSpec.describe UserAuthToken::Renew do
   describe "#call" do
     subject(:call) { described_class.call(user) }
 
-    let(:user) { create(:user) }
+    let(:user) { create(:user, auth_token_has_been_validated: true) }
 
     context "when the user is valid" do
       include_context "with success result"
@@ -11,6 +11,10 @@ RSpec.describe UserAuthToken::Renew do
 
       it "updates auth token" do
         expect { call }.to change(user, :auth_token)
+      end
+
+      it "sets auth_token_has_been_validated to false" do
+        expect { call }.to change(user, :auth_token_has_been_validated).to(false)
       end
 
       it "sends mail" do
