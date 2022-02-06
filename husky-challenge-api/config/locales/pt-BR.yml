@@ -10,7 +10,6 @@ pt-BR:
     user:
       errors:
         invalid: "Usuário inválido"
-        token_renew: "Ocorreu um erro ao atualizar o token"
   date:
     abbr_day_names:
       - dom
