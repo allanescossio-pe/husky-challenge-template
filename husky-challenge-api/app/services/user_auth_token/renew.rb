@@ -5,11 +5,15 @@ module UserAuthToken
     end
 
     def call
-      return error_result(I18n.t("general.user.invalid")) unless user.is_a?(User)
+      return error_result(I18n.t("general.user.errors.invalid")) unless user.is_a?(User)
 
-      user.regenerate_auth_token
-
+      User.transaction do
+        user.regenerate_auth_token
+        UserAuthToken::SendMail.call(user)
+      end
       success_result
+    rescue StandardError
+      error_result(I18n.t("general.user.errors.token_renew"))
     end
 
     private
