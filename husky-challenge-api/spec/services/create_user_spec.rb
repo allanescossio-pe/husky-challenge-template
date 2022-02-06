@@ -28,16 +28,13 @@ RSpec.describe CreateUser do
 
         expect(create_user.result.class).to eq(ActiveModel::Errors)
       end
+    end
 
-      context "when there are errors" do
-        before { allow(UserAuthToken::SendMail).to receive(:call).with(User.last).and_raise(StandardError) }
+    context "when there are errors" do
+      before { allow(UserAuthToken::SendMail).to receive(:call).and_raise(StandardError) }
 
-        include_examples "success should be false"
-
-        it "doesn't create user" do
-          call
-          expect(User.count).to be_zero
-        end
+      it "stop process with raise error" do
+        expect { call }.to raise_error(StandardError)
       end
     end
   end

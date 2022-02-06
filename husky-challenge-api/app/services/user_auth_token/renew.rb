@@ -12,8 +12,6 @@ module UserAuthToken
         UserAuthToken::SendMail.call(user)
       end
       success_result
-    rescue StandardError
-      error_result(I18n.t("general.user.errors.token_renew"))
     end
 
     private
