@@ -1,5 +1,15 @@
 pt-BR:
   activerecord:
+    models:
+      user:
+        one: Usuário
+        more: Usuários
+      invoice:
+        one: Fatura
+        more: Faturas
+    attributes:
+      invoice:
+        user: "Usuário"
     errors:
       messages:
         record_invalid: "A validação falhou: %{errors}"
@@ -11,6 +21,9 @@ pt-BR:
       user:
         not_found: Usuário não encontrado
         need_validate_auth_token: É necessário validar o token de acesso. Por favor, cheque sua caixa de email ou gere um novo token.
+      invoice:
+        not_found: Fatura não encontrada
+        due_date_is_behind: Data para vencimento já passou
   date:
     abbr_day_names:
       - dom

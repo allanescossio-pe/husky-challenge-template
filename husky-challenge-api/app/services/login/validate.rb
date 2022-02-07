@@ -1,7 +1,5 @@
 module Login
-  class Validate < ApplicationService
-    include ActiveModel::Validations
-
+  class Validate < ApplicationServiceValidator
     delegate :auth_token_has_been_validated, to: :user, allow_nil: true
 
     validates_presence_of :user, message: I18n.t("general.errors.user.not_found")
@@ -20,10 +18,6 @@ module Login
     private
 
     attr_reader :user
-
-    def error_messages
-      errors.messages.values.flatten
-    end
 
     def auth_token_validated
       return if user.nil?

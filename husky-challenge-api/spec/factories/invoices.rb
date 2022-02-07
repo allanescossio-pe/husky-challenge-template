@@ -1,5 +1,7 @@
 FactoryBot.define do
   factory :invoice do
+    user
+
     number { FFaker::Number.number(digits: 6) }
     issuer { FFaker::NameBR.name }
     payer { FFaker::NameBR.name }
