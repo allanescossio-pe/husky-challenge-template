@@ -11,4 +11,8 @@ RSpec.describe User, type: :model do
       expect validate_uniqueness_of(:email).ignoring_case_sensitivity
     end
   end
+
+  describe "associations" do
+    it { is_expected.to have_many(:invoices) }
+  end
 end
