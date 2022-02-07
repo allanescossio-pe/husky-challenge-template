@@ -1,11 +1,11 @@
 RSpec.describe "UserAuthToken::Renew", type: :request do
   describe "PATCH /user_auth_token/renew/:email" do
-    include_context "with success result"
-
     let(:valid_url) { "/user_auth_token/renew/test@email%2ecom"}
     let(:user) { create(:user, email: "test@email.com") }
 
     context "with valid user" do
+      include_context "with success result"
+
       before { allow(UserAuthToken::Renew).to receive(:call).with(user).and_return(success_result) }
 
       it "renews token", :aggregate_failures do
@@ -27,6 +27,8 @@ RSpec.describe "UserAuthToken::Renew", type: :request do
     end
 
     context "when does not renew token" do
+      include_context "with error result"
+
       before { allow(UserAuthToken::Renew).to receive(:call).with(user).and_return(error_result) }
 
       it "returns unprocessable_entity status" do
