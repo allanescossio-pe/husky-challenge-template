@@ -3,7 +3,6 @@ class LoginController < ApplicationController
 
   def create
     login = Login::Execute.call(auth_params[:token])
-
     if login.success?
       render json: { user: login.result }, status: :ok
     else
