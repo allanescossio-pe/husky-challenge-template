@@ -1,57 +1,27 @@
-# Husky Challenge
+# Racional
 
-Esse é um projeto base para te ajudar na solução do [desafio Husky](https://github.com/husky-misc/code-challenge/issues/33).
+Versões: 
+  - Rails 7
+  - Ruby 3.1.0
 
-Você vai encontrar um setup inicial da autenticação, controle das invoices e e-mail de notificação.
+A API foi isolada do front por conta da modularidade e pela liberdade de reutilização da mesma por outros aplicativos. Um bom motivo também é sobre a manipulação das requisições. Neste modelo é possível trabalhar com mecanismos de feedback pelo lado do cliente enquando as requisições são executadas e, em caso de erro, é possível apenas mandar um alerta na tela sem que a aplicação quebre por completo.
 
-A ideia aqui é dar um empurrão inicial para te ajudar nas implementações, mas... cuidado, esse empurrão pode não ser para a direção correta.
+Foi criado um projeto base(Rails Engine) que é incorporado ao principal através do `Gemfile`. Dentro do projeto são criadas classes que herdam destas classes base e servem se referência para criação das suas derivadas. É possível ver este exemplo abrindo a classe `ApplicationService`. Ela apenas herda de `Application::Base::Service` e ainda não tem nada implementado, mas a idéia é que se surgir alguma particularidade deste projeto, esta seja implementada dentro da `ApplicationService` .
 
-O projeto foi implementado de uma forma bem básica, fazendo uso de uma abordagem diferente do que praticamos na Husky. Nós queremos ver justamente o seu processo de trabalho e decisões para melhorar a arquitetura e funcionamento da aplicação.
+As regras de negócio estão separadas em services modularizados. Um dos princípios que mais foi tido cuidado de não violar foi o do SRP, tentei também respeitar ao máximo o contrato entre as classes e praticar o DRY.
+Nos controllers foi usado um padrão restful adaptado para o rails, onde os unicos métodos implementados são `index, show, create, update e delete`. A ideia é evitar o crescimento desordenado dos controllers, separar responsabilidades e fica até mais fácil identificar onde está cada endpoint olhando apenas o nome do arquivo.
 
-> Dica: leve em consideração o que descrevemos nos tópicos `Solução`, `Expectativas` e `Contexto: O que utilizamos / fazemos na Husky` do [desafio](https://github.com/husky-misc/code-challenge/issues/33).
+Toda a construção foi feita baseada em testes. Podemos considerar a aplicação 100% testada. A medição real está com 93.81% por conta que não configurei para ignorar algumas classes base, como por exemplo, a `ApplicationJob`. A maioria dos conceitos utilizados nos testes foi respeitando o que é pregado nas boas práticas definidas no `BetterSpecs`.
 
-**Importante:** você não precisa ficar preso a estrutra desse projeto. Sinta-se a vontade para modificar o que achar necessário. Ex: README, adicionar/modificar/remover dependências, arquivos e diretórios...
+A ideia inicial era, após finalizar a API e criar uma applicação client, porém tive muitos contratempos que me impediram de completar o teste como desejava. Abaixo segue as pendências:
+- Criação de client em ReactJS
+- Configurar Docker
+- Documentar utilizando swagger. Este eu até tentei, mas tive contratempos, aparentemente por incompatibilidade da gem com o rails 7.
+- Criar, no projeto base, classes de referências para os testes.
 
-## Configuração
+> master.key: 5e35f9cc4c18518a86bbfe53ae5d5e62
 
-### Dependências de ambiente
-
-- Ruby `>= 3.1.0`
-  - bundler `>= 2.3.4`
-  - rails `>= 7`
-- Node.js `>= 16.13.2`
-  - npm `>= 8.0`
-  - yarn `>= 1.22.0`
-- Postgresql
-
-### Preparando ambiente de desenvolvimento
-
-1) Instale as dependências de ambiente.
-
-2) Crie o arquivo `config/master.key`.
-
-```sh
-echo '2500af7274898ae80b2c62be1bbbb64f' > config/master.key
-
-chmod 600 config/master.key
-```
-
-3) Crie o aquivo `config/database.yml` a partir do `config/database.yml.sample`.
-
-4) Configure o arquivo `config/database.yml`.
-
-5) Execute `bin/setup`
-
-## Desenvolvimento
-
-### Executando a aplicação
-
-```sh
-bin/dev
-```
-
-### Executando os testes
-
-```sh
-bin/rails spec
-```
+## Execução
+- Configurar o `database.yml` de acordo com o exemplo que está no projeto base da Husky. Não foi colocado nenhuma configuração no credentials.
+- Executar `bundle install`
+- Iniciar aplicação com `rails s`
