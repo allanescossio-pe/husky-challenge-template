@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    create_user = CreateUser.call(user_params)
+    create_user = Users::Create.call(user_params)
 
     render json: create_user.result, status: create_user.success? ? :created : :unprocessable_entity
   end

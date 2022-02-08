@@ -1,4 +1,4 @@
-RSpec.describe CreateUser do
+RSpec.describe Users::Create do
   describe "#call" do
     subject(:call) { described_class.call(user_params) }
 
