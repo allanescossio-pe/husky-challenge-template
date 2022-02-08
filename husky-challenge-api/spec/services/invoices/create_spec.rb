@@ -3,15 +3,7 @@ RSpec.describe Invoices::Create do
     subject(:call) { described_class.call(invoice_params, user) }
 
     let(:user) { create(:user) }
-    let(:invoice_params) do
-      {
-        number: FFaker::Number.number(digits: 6),
-        issuer: FFaker::NameBR.name,
-        payer: FFaker::NameBR.name,
-        price: FFaker::Number.decimal,
-        due_date: 10.days.from_now.to_date
-      }
-    end
+    let(:invoice_params) { build(:invoice).attributes }
 
     context "when the params are valid" do
       include_examples "success should be true"

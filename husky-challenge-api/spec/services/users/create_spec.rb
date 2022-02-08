@@ -2,12 +2,7 @@ RSpec.describe Users::Create do
   describe "#call" do
     subject(:call) { described_class.call(user_params) }
 
-    let(:user_params) do
-      {
-        name: FFaker::NameBR.name,
-        email: FFaker::Internet.email
-      }
-    end
+    let(:user_params) { build(:user).attributes }
 
     context "when the params are valid" do
       include_examples "success should be true"
