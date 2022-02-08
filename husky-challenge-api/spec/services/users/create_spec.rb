@@ -20,6 +20,7 @@ RSpec.describe Users::Create do
 
       it "sends mail" do
         expect(UserAuthToken::SendMail).to receive(:call).with(an_instance_of(User))
+
         call
       end
     end
