@@ -2,5 +2,5 @@
 
 <p>Olá <%= @user.name %>, seu token de acesso é: <%= @user.auth_token %></p>
 <p>Guarde o bem, pois ele será sua chave de entrada para a aplicação</p>
-<p>Clique <%= link_to "aqui", "http://localhost:3000/user_auth_token/validate/1" %> para ativar seu token.</p>
+<p>Clique <%= link_to "aqui", "http://localhost:3000/user_auth_token/validate/#{@user.id}" %> para ativar seu token.</p>
 
