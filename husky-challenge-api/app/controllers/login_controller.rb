@@ -1,5 +1,5 @@
 class LoginController < ApplicationController
-  #skip_before_action :validate_token
+  skip_before_action :validate_token
 
   def create
     login = Login::Execute.call(auth_params[:token])

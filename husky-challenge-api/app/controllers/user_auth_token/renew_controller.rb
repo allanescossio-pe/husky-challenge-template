@@ -1,5 +1,7 @@
 module UserAuthToken
   class RenewController < ApplicationController
+    skip_before_action :validate_token
+
     def update
       user = User.find_by(email: params[:email])
 

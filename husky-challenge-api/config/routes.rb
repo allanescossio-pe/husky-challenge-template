@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :invoices
-  resources :users, only: %i[show create update]
+  resources :users, only: %i[show create]
   namespace :user_auth_token do
     patch "renew/:email", to: "renew#update"
     get "validate/:id", to: "validate#update"

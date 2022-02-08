@@ -17,6 +17,7 @@ group :development, :test do
   gem "rubocop", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
+  gem "rspec-default_http_header"
 end
 
 group :development do

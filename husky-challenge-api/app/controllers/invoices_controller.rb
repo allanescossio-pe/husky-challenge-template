@@ -1,51 +1,25 @@
 class InvoicesController < ApplicationController
-  before_action :set_invoice, only: %i[ show update destroy ]
+  before_action :set_invoice, only: :show
 
-  # GET /invoices
   def index
-    @invoices = Invoice.all
-
-    render json: @invoices
+    render json: Invoice.all
   end
 
-  # GET /invoices/1
   def show
-    render json: @invoice
+    invoice = Invoice.find(params[:id])
+
+    render json: invoice
   end
 
-  # POST /invoices
   def create
-    @invoice = Invoice.new(invoice_params)
+    create_invoice = Invoices::Create.call(invoice_params, current_user)
 
-    if @invoice.save
-      render json: @invoice, status: :created, location: @invoice
-    else
-      render json: @invoice.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /invoices/1
-  def update
-    if @invoice.update(invoice_params)
-      render json: @invoice
-    else
-      render json: @invoice.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /invoices/1
-  def destroy
-    @invoice.destroy
+    render json: create_invoice.result, status: create_invoice.success? ? :created : :unprocessable_entity
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_invoice
-      @invoice = Invoice.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def invoice_params
-      params.fetch(:invoice, {})
-    end
+  def invoice_params
+    params.require(:invoice).permit(:number, :issuer, :payer, :price, :due_date)
+  end
 end
