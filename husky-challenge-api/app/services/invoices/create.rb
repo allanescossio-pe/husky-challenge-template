@@ -8,7 +8,6 @@ module Invoices
     def call
       Invoice.transaction do
         invoice = Invoice.new(invoice_params.merge({ user: user }))
-
         invoice_validation = Invoices::Validations::Creation.call(invoice)
 
         return error_result(invoice.errors) unless invoice_validation.success?
