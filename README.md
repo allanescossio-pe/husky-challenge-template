@@ -18,6 +18,8 @@ A ideia inicial era, após finalizar a API e criar uma applicação client, por�
 - Configurar Docker
 - Documentar utilizando swagger. Este eu até tentei, mas tive contratempos, aparentemente por incompatibilidade da gem com o rails 7.
 - Criar, no projeto base, classes de referências para os testes.
+- Criar envio de email de faturas
+- Permitir download de pdf da fatura
 
 > master.key: 5e35f9cc4c18518a86bbfe53ae5d5e62
 
