@@ -22,8 +22,4 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   config.default_formatter = "documentation" if config.files_to_run.one?
-
-  config.before(:example, type: :request) do
-    config.include_context "authorization header"
-  end
 end

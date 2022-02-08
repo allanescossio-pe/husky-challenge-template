@@ -3,8 +3,6 @@ RSpec.describe "Users", type: :request do
 
   let(:invalid_attributes) { build(:user, name: nil).attributes }
 
-  let(:valid_headers) { {} }
-
   describe "GET /show" do
     it "renders a successful response" do
       user = User.create! valid_attributes
@@ -18,13 +16,13 @@ RSpec.describe "Users", type: :request do
       it "creates a new User" do
         expect {
           post users_url,
-               params: { user: valid_attributes }, headers: valid_headers, as: :json
+               params: { user: valid_attributes }, as: :json
         }.to change(User, :count).by(1)
       end
 
       it "renders a JSON response with the new user" do
         post users_url,
-             params: { user: valid_attributes }, headers: valid_headers, as: :json
+             params: { user: valid_attributes }, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -40,7 +38,7 @@ RSpec.describe "Users", type: :request do
 
       it "renders a JSON response with errors for the new user" do
         post users_url,
-             params: { user: invalid_attributes }, headers: valid_headers, as: :json
+             params: { user: invalid_attributes }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
